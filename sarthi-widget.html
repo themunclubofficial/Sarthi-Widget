@@ -694,7 +694,7 @@ async function sendMsg(txt){
       : SYS;
     // Groq API call
     const groqMessages = [{role:'system', content: systemFull}];
-    hist.slice(-14).forEach(m => groqMessages.push(m));
+    hist.slice(-6).forEach(m => groqMessages.push(m));
 
     const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
@@ -703,9 +703,9 @@ async function sendMsg(txt){
         'Authorization':'Bearer '+apiKey
       },
       body:JSON.stringify({
-        model:'openai/gpt-oss-20b',
+        model:'openai/gpt-oss-120b',
         messages: groqMessages,
-        max_tokens: 500,
+        max_tokens: 280,
         temperature: 0.7
       })
     });
